@@ -12,34 +12,38 @@ package edu.unicundi.tallerfiguras;
  */
 public class Figura {
     
-    private short lado1;
-    private short lado2;
-    private short lado3;
+    
+    short area;
+    short perimetro;
     
     
 
-    public short getLado1() {
-        return lado1;
+    public short getArea() {
+        return area;
     }
 
-    public void setLado1(short lado1) {
-        this.lado1 = lado1;
+    public void setArea(short area) {
+        this.area = area;
     }
 
-    public short getLado2() {
-        return lado2;
+    public short getPerimetro() {
+        return perimetro;
     }
 
-    public void setLado2(short lado2) {
-        this.lado2 = lado2;
+    public short setPerimetro(short perimetro) {
+        return perimetro;
     }
-
-    public short getLado3() {
-        return lado3;
+    
+    public short hallarArea(){
+        return area;
+        
     }
-
-    public void setLado3(short lado3) {
-        this.lado3 = lado3;
+    public short hallarPerimetro(){
+        return perimetro;
+        
     }
+    
+    
+    
     
 }

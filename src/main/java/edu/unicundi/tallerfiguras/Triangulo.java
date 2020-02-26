@@ -7,35 +7,57 @@ package edu.unicundi.tallerfiguras;
 
 /**
  *
- * @author ASUS
+ * @author Christian Diaz
+ * @author Cristian Medina
  */
 public class Triangulo extends Figura{
     
-    private int base;
+    private short base;
     
-    private int altura;
+    private short altura;
 
-    public int getBase() {
+    public short getBase() {
         return base;
     }
 
-    public void setBase(int base) {
+    public void setBase(short base) {
         this.base = base;
     }
 
-    public int getAltura() {
+    public short getAltura() {
         return altura;
     }
 
-    public void setAltura(int altura) {
+    public void setAltura(short altura) {
         this.altura = altura;
     }
     
     
+    //no importa sus lados
+    @Override
+    public short hallarArea(){
+        area= (short) ((base* altura)/2);
+        return this.area;
+    }
     
-    
-    
-    
+    //solo si es equilatero
+    @Override
+    public short hallarPerimetro(){
+        perimetro= (short) (base*3);
+        return perimetro;    
+    }
+    /*@Override
+    //isoceles
+    public short hallarPerimetro(){
+        perimetro= (short) (lado1 *lado2 + base);
+        return perimetro;    
+    }
+    //escaleno
+    @Override
+    public short hallarPerimetro(){
+        perimetro= (short)lado1+lado2+lado3;
+        return perimetro;    
+    }*/
     
     
 }
