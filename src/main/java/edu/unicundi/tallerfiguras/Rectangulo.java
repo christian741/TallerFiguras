@@ -18,6 +18,8 @@ public class Rectangulo extends CuadradoRectangulo{
         super(lado1);
         this.lado2=lado2;
     }
+
+    
     
      public short getLado2() {
         return lado2;
@@ -27,10 +29,20 @@ public class Rectangulo extends CuadradoRectangulo{
         this.lado2 = lado2;
     }
     
+    /**
+     * metodo que calcula el perimetro  del rectangulo
+     * @param lado1 
+     */
+   
     @Override
     public void hallarPerimetro(short lado1){
         perimetro= (short) (lado1*2 + lado2*2);
     }
+    
+    /**
+     * metodo que calcula el area del rectangulo
+     * @param lado1 
+     */
    
     @Override
     public void hallarArea(short lado1){

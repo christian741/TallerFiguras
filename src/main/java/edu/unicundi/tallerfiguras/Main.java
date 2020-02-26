@@ -4,17 +4,16 @@
  * and open the template in the editor.
  */
 package edu.unicundi.tallerfiguras;
-
 /**
  *
  * @author Christian Diaz
  * @author Cristian Medina
  */
-public class Main {
+public class Main extends Figura{
     
     public static void main(String[] args){
         
-       
+        
         
     }
     

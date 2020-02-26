@@ -17,7 +17,7 @@ public class CuadradoRectangulo extends Figura{
     public CuadradoRectangulo(short lado1){
         this.lado1=lado1;
     }
-    
+
     public short getLado1() {
         return lado1;
     }
