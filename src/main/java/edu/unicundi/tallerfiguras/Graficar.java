@@ -7,6 +7,7 @@ package edu.unicundi.tallerfiguras;
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import sun.security.timestamp.TSResponse;
@@ -324,21 +325,24 @@ public class Graficar extends javax.swing.JFrame {
     }//GEN-LAST:event_jcomFigurasActionPerformed
 
     private void butGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGraficarActionPerformed
-       pintarCuadrado();
+       // panPlano.repaint();
+        
+        pintarCuadrado(this.panPlano.getGraphics());
         
     }//GEN-LAST:event_butGraficarActionPerformed
 
-    public void  pintarCuadrado(){
-        
-        Graphics g = this.panPlano.getGraphics();
-        //g.drawLine(Integer.parseInt(textX1.getText().toString()) ,Integer.parseInt(textY1.getText().toString()),Integer.parseInt(textX2.getText().toString()), Integer.parseInt(textY2.getText().toString()));
-        g.drawRect(300,230,232, 8);
-        g.setColor(Color.black);
-        panPlano.setBackground(Color.red);
-        this.panPlano.paintComponents(g);
-        this.panPlano.repaint();
-      
+    public void  pintarCuadrado(Graphics g){
+      //panPlano.setBackground(Color.white);
+      g.drawLine(Integer.parseInt(textX1.getText().toString()),Integer.parseInt(textY1.getText().toString()),Integer.parseInt(textX2.getText().toString()),Integer.parseInt(textY2.getText().toString()));
+      g.drawLine(Integer.parseInt(textX2.getText().toString()),Integer.parseInt(textY2.getText().toString()),Integer.parseInt(textX3.getText().toString()),Integer.parseInt(textY3.getText().toString()));
+     g.drawLine(Integer.parseInt(textX3.getText().toString()),Integer.parseInt(textY3.getText().toString()),Integer.parseInt(textX4.getText().toString()),Integer.parseInt(textY4.getText().toString()));
+     g.drawLine(Integer.parseInt(textX4.getText().toString()),Integer.parseInt(textY4.getText().toString()),Integer.parseInt(textX1.getText().toString()),Integer.parseInt(textY1.getText().toString()));
+    
+      g.dispose();
+      super.paintComponents(g);
+     
     }
+    
     /**
      * @param args the command line arguments
      */
