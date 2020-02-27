@@ -11,41 +11,28 @@ package edu.unicundi.tallerfiguras;
  * @author Cristian Medina
  */
 public class Rectangulo extends CuadradoRectangulo{
-    
-    private short lado2;
-
-    public Rectangulo(short lado1, short lado2) {
-        super(lado1);
-        this.lado2=lado2;
-    }
-
-    
-    
-     public short getLado2() {
-        return lado2;
-    }
-
-    public void setLado2(short lado2) {
-        this.lado2 = lado2;
-    }
-    
-    /**
-     * metodo que calcula el perimetro  del rectangulo
-     * @param lado1 
-     */
    
+     /**
+     * metodo que calcula el perimetro del rectangulo
+     *
+     * @param lado1
+     * @param lado2
+     */
     @Override
-    public void hallarPerimetro(short lado1){
-        perimetro= (short) (lado1*2 + lado2*2);
+    public void hallarPerimetro(short lado1, short lado2) {
+        short perimetro = (short) (lado1 * 2 + lado2 * 2);
+        setPerimetro(perimetro);
     }
-    
+
     /**
      * metodo que calcula el area del rectangulo
-     * @param lado1 
+     *
+     * @param lado1
+     * @param lado2
      */
-   
     @Override
-    public void hallarArea(short lado1){
-        area= (short) (lado1*lado2);
+    public void hallarArea(short lado1, short lado2) {
+        short area = (short) (lado1 * lado2);
+        setArea(area);
     }
 }

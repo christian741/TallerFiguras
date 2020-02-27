@@ -4,18 +4,29 @@
  * and open the template in the editor.
  */
 package edu.unicundi.tallerfiguras;
-
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import sun.security.timestamp.TSResponse;
 /**
  *
  * @author ASUS
  */
 public class Graficar extends javax.swing.JFrame {
 
+    private Cuadrado cuadrado;
+    private Rectangulo rectangulo;
+    private Triangulo triangulo;
+   
     /**
      * Creates new form Graficar
      */
     public Graficar() {
         initComponents();
+        ocultarCajas();
+        
     }
 
     /**
@@ -42,7 +53,7 @@ public class Graficar extends javax.swing.JFrame {
         textY3 = new javax.swing.JTextField();
         textX4 = new javax.swing.JTextField();
         textY4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        butGraficar = new javax.swing.JButton();
         labelX1 = new javax.swing.JLabel();
         labelY1 = new javax.swing.JLabel();
         labelX2 = new javax.swing.JLabel();
@@ -103,7 +114,12 @@ public class Graficar extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Dibujar");
+        butGraficar.setText("Dibujar");
+        butGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butGraficarActionPerformed(evt);
+            }
+        });
 
         labelX1.setText("X:");
 
@@ -128,18 +144,13 @@ public class Graficar extends javax.swing.JFrame {
         panFormularioLayout.setHorizontalGroup(
             panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFormularioLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCordenada4)
-                            .addComponent(labelCordenada3)
-                            .addComponent(labelCordenada2)
-                            .addComponent(labelCordenada1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jButton1)))
-                .addContainerGap(94, Short.MAX_VALUE))
+                    .addComponent(labelCordenada4)
+                    .addComponent(labelCordenada3)
+                    .addComponent(labelCordenada2)
+                    .addComponent(labelCordenada1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,29 +158,32 @@ public class Graficar extends javax.swing.JFrame {
                         .addGap(0, 74, Short.MAX_VALUE)
                         .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
-                                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelX1)
-                                    .addComponent(labelY1)
-                                    .addComponent(labelX2)
-                                    .addComponent(labelY2)
-                                    .addComponent(labelX3)
-                                    .addComponent(labelY3)
-                                    .addComponent(labelX4)
-                                    .addComponent(labelY4))
-                                .addGap(38, 38, 38)
-                                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textX4, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                    .addComponent(textY3)
-                                    .addComponent(textX3)
-                                    .addComponent(textY2)
-                                    .addComponent(textX2)
-                                    .addComponent(textY1)
-                                    .addComponent(textX1)
-                                    .addComponent(textY4))
-                                .addGap(41, 41, 41))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
                                 .addComponent(jcomFiguras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFormularioLayout.createSequentialGroup()
+                                .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(butGraficar)
+                                    .addGroup(panFormularioLayout.createSequentialGroup()
+                                        .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(labelX1)
+                                            .addComponent(labelY1)
+                                            .addComponent(labelX2)
+                                            .addComponent(labelY2)
+                                            .addComponent(labelX3)
+                                            .addComponent(labelY3)
+                                            .addComponent(labelX4)
+                                            .addComponent(labelY4))
+                                        .addGap(38, 38, 38)
+                                        .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(textX4, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                            .addComponent(textY3)
+                                            .addComponent(textX3)
+                                            .addComponent(textY2)
+                                            .addComponent(textX2)
+                                            .addComponent(textY1)
+                                            .addComponent(textX1)
+                                            .addComponent(textY4))))
+                                .addGap(41, 41, 41))))
                     .addComponent(labelJcombox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panFormularioLayout.setVerticalGroup(
@@ -219,12 +233,11 @@ public class Graficar extends javax.swing.JFrame {
                     .addComponent(labelX4))
                 .addGap(18, 18, 18)
                 .addGroup(panFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panFormularioLayout.createSequentialGroup()
-                        .addComponent(labelY4)
-                        .addGap(118, 118, 118)
-                        .addComponent(jButton1))
+                    .addComponent(labelY4)
                     .addComponent(textY4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(butGraficar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panPlanoLayout = new javax.swing.GroupLayout(panPlano);
@@ -235,7 +248,7 @@ public class Graficar extends javax.swing.JFrame {
         );
         panPlanoLayout.setVerticalGroup(
             panPlanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 645, Short.MAX_VALUE)
         );
 
         labelTitulo.setText("Figuras Con Herencia");
@@ -277,9 +290,9 @@ public class Graficar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(panFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(panPlano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(panPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 17, Short.MAX_VALUE))
+                    .addComponent(panFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -306,9 +319,26 @@ public class Graficar extends javax.swing.JFrame {
     }//GEN-LAST:event_textY4ActionPerformed
 
     private void jcomFigurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcomFigurasActionPerformed
-        // TODO add your handling code here:
+
+        obtenerDatos();        // TODO add your handling code here:
     }//GEN-LAST:event_jcomFigurasActionPerformed
 
+    private void butGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGraficarActionPerformed
+       pintarCuadrado();
+        
+    }//GEN-LAST:event_butGraficarActionPerformed
+
+    public void  pintarCuadrado(){
+        
+        Graphics g = this.panPlano.getGraphics();
+        //g.drawLine(Integer.parseInt(textX1.getText().toString()) ,Integer.parseInt(textY1.getText().toString()),Integer.parseInt(textX2.getText().toString()), Integer.parseInt(textY2.getText().toString()));
+        g.drawRect(300,230,232, 8);
+        g.setColor(Color.black);
+        panPlano.setBackground(Color.red);
+        this.panPlano.paintComponents(g);
+        this.panPlano.repaint();
+      
+    }
     /**
      * @param args the command line arguments
      */
@@ -335,6 +365,7 @@ public class Graficar extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Graficar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -343,9 +374,90 @@ public class Graficar extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void obtenerDatos(){
+        
+        String categoria = (String) jcomFiguras.getSelectedItem();
+        if(categoria.equals("Seleccione una figura")){
+           JOptionPane.showMessageDialog(null, "Lo sentimos escoja una figura", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        if(categoria.equals("Cuadrado")){
+            ocultarCajas();
+            verCuadroRectangulo();
+        }
+         if(categoria.equals("Rectangulo")){
+             ocultarCajas();
+            verCuadroRectangulo();
+        }
+        if(categoria.equals("Triangulo")){
+            ocultarCajas();
+            verTriangulo();
+        }
+        
+    }
+    
+    private void verTriangulo() {
+        
+        this.labelCordenada1.setVisible(true);
+        this.labelCordenada2.setVisible(true);
+        this.labelCordenada3.setVisible(true);
+        
+        this.labelX1.setVisible(true);this.textX1.setVisible(true);
+        this.labelX2.setVisible(true);this.textX2.setVisible(true);
+        this.labelX3.setVisible(true);this.textX3.setVisible(true);
+      
+        this.labelY1.setVisible(true);this.textY1.setVisible(true);
+        this.labelY2.setVisible(true);this.textY2.setVisible(true);
+        this.labelY3.setVisible(true);this.textY3.setVisible(true);
+       
+        this.butGraficar.setVisible(true);
 
+    }
+    
+    private void verCuadroRectangulo() {
+        
+        this.labelCordenada1.setVisible(true);
+        this.labelCordenada2.setVisible(true);
+        this.labelCordenada3.setVisible(true);
+        this.labelCordenada4.setVisible(true);
+ 
+        this.labelX1.setVisible(true);this.textX1.setVisible(true);
+        this.labelX2.setVisible(true);this.textX2.setVisible(true);
+        this.labelX3.setVisible(true);this.textX3.setVisible(true);
+        this.labelX4.setVisible(true);this.textX4.setVisible(true);
+        
+        this.labelY1.setVisible(true);this.textY1.setVisible(true);
+        this.labelY2.setVisible(true);this.textY2.setVisible(true);
+        this.labelY3.setVisible(true);this.textY3.setVisible(true);
+        this.labelY4.setVisible(true);this.textY4.setVisible(true);
+        
+        this.butGraficar.setVisible(true);
+
+    }
+    
+    private void ocultarCajas() {
+        
+        this.labelCordenada1.setVisible(false);
+        this.labelCordenada2.setVisible(false);
+        this.labelCordenada3.setVisible(false);
+        this.labelCordenada4.setVisible(false);
+ 
+        this.labelX1.setVisible(false);this.textX1.setVisible(false);
+        this.labelX2.setVisible(false);this.textX2.setVisible(false);
+        this.labelX3.setVisible(false);this.textX3.setVisible(false);
+        this.labelX4.setVisible(false);this.textX4.setVisible(false);
+        
+        this.labelY1.setVisible(false);this.textY1.setVisible(false);
+        this.labelY2.setVisible(false);this.textY2.setVisible(false);
+        this.labelY3.setVisible(false);this.textY3.setVisible(false);
+        this.labelY4.setVisible(false);this.textY4.setVisible(false);
+        
+        this.butGraficar.setVisible(false);
+        
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton butGraficar;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JComboBox jcomFiguras;
     private javax.swing.JLabel labelCordenada1;

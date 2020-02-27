@@ -12,52 +12,18 @@ package edu.unicundi.tallerfiguras;
  */
 public class Triangulo extends Figura{
     
-    private short base;
-    
-    private short altura;
+    private short lado3;
 
-    public short getBase() {
-        return base;
+    public void hallarArea(short lado1,short lado2,short lado3){
+       
     }
-
-    public void setBase(short base) {
-        this.base = base;
-    }
-
-    public short getAltura() {
-        return altura;
-    }
-
-    public void setAltura(short altura) {
-        this.altura = altura;
-    }
-    
-    
-    //no importa sus lados
-    @Override
-    public short hallarArea(){
-        area= (short) ((base* altura)/2);
-        return this.area;
-    }
-    
-    //solo si es equilatero
-    @Override
-    public short hallarPerimetro(){
-        perimetro= (short) (base*3);
+ 
+   
+    public short  hallarPerimetro(short lado1 , short lado2 , short lado3){
+        short perimetro= (short) (lado1+lado2+lado3);
         return perimetro;    
     }
-    /*@Override
-    //isoceles
-    public short hallarPerimetro(){
-        perimetro= (short) (lado1 *lado2 + base);
-        return perimetro;    
-    }
-    //escaleno
-    @Override
-    public short hallarPerimetro(){
-        perimetro= (short)lado1+lado2+lado3;
-        return perimetro;    
-    }*/
+  
     
     
 }

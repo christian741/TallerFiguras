@@ -12,25 +12,13 @@ package edu.unicundi.tallerfiguras;
  */
 public class CuadradoRectangulo extends Figura{
 
-    private short lado1;
-    
-    public CuadradoRectangulo(short lado1){
-        this.lado1=lado1;
-    }
-
-    public short getLado1() {
-        return lado1;
-    }
-
-    public void setLado1(short lado1) {
-        this.lado1 = lado1;
-    }
-    public void hallarPerimetro(short lado1){
-        perimetro= (short) (lado1*4);
+ 
+    public void hallarPerimetro(short lado1,short lado2){
+        
     }
     
-    public void hallarArea(short lado1){
-        area= (short) (lado1^2);
+    public void hallarArea(short lado1, short lado2){
+       
     }
     
 }
