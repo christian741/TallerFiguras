@@ -33,8 +33,6 @@ public class Triangulo extends Figura{
                 tipo=3;
             }
         }
-        
-        
         return tipo;
     }
  

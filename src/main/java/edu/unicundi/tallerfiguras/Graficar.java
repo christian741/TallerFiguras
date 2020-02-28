@@ -17,9 +17,9 @@ import sun.security.timestamp.TSResponse;
  */
 public class Graficar extends javax.swing.JFrame {
 
-    private Cuadrado cuadrado;
-    private Rectangulo rectangulo;
-    private Triangulo triangulo;
+    private Cuadrado cuadrado = new Cuadrado();
+    private Rectangulo rectangulo = new Rectangulo();
+    private Triangulo triangulo = new Triangulo();
     
        
     public class Dibujo2D extends JPanel {
@@ -39,11 +39,13 @@ public class Graficar extends javax.swing.JFrame {
                 g.drawLine(valores[0], valores[1], valores[2], valores[3]);
                 g.drawLine(valores[2], valores[3], valores[4], valores[5]);
                 g.drawLine(valores[4], valores[5], valores[0], valores[1]);
+               
             } else {
                 g.drawLine(valores[0], valores[1], valores[2], valores[3]);
                 g.drawLine(valores[2], valores[3], valores[4], valores[5]);
                 g.drawLine(valores[4], valores[5], valores[6], valores[7]);
                 g.drawLine(valores[6], valores[7], valores[0], valores[1]);
+               
 
             }
 
@@ -51,53 +53,90 @@ public class Graficar extends javax.swing.JFrame {
     }
 
     private void obtenerLados(int[] arrayEnteros) {
+        
+        boolean validacion =false;
         String categoria = (String) jcomFiguras.getSelectedItem();
         int lado1, lado2, lado3, lado4;
         if (categoria.equals("Triangulo")) {
              //lado1 = (x1 - y1) + (y2 - x2)
-            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]);
+            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]);
             if (lado1 < 0) {
-                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]) * -1;
+                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]) * -1;
             }
             // lado2 = (x2 - y2) + (y3 - x3
-            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4]);
             if (lado2 < 0) {
-                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4])*-1;
             }
             // lado3 = (x3 - y3) + (y4 - x4
-            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6]);
             if (lado3 < 0) {
-                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6])*-1;
             }
+            byte tipo = triangulo.verificarTriangulo((short)lado1,(short)lado2,(short)lado3);
+            if(tipo==1){
+               //JOptionPane.showMessageDialog(null, "Es un Triangulo Equilatero", "Error", JOptionPane.INFORMATION_MESSAGE);
+               validacion=true;
+           }
+            if(tipo==2){
+               //JOptionPane.showMessageDialog(null, "Es un Triangulo Isoceles", "Error", JOptionPane.INFORMATION_MESSAGE);
+               validacion=true;
+           }
+            if(tipo==3){
+               //JOptionPane.showMessageDialog(null, "Es un Triangulo Escaleno", "Error", JOptionPane.INFORMATION_MESSAGE);
+               validacion=true;
+           }
+           // validacion=true;
         } else {
             //lado1 = (x1 - y1) + (y2 - x2)
-            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]);
+            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]);
             if (lado1 < 0) {
-                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]) * -1;
+                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]) * -1;
             }
             // lado2 = (x2 - y2) + (y3 - x3
-            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4]);
             if (lado2 < 0) {
-                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4])*-1;
             }
             // lado3 = (x3 - y3) + (y4 - x4
-            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6]);
             if (lado3 < 0) {
-                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6])*-1;
             }
             // lado3 = (x3 - y3) + (y4 - x4
-            lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[0] - arrayEnteros[1]);
+            lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[1] - arrayEnteros[0]);
             if (lado4 < 0) {
-                lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[0] - arrayEnteros[1]);
+                lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[1] - arrayEnteros[0])*-1;
             }
-        
+            
+        if (categoria.equals("Cuadrado")){
+             boolean verdad=cuadrado.verificarCuadrado(lado1, lado2, lado3, lado4);
+            if(verdad==true){
+                //JOptionPane.showMessageDialog(null, "Es un Cuadrado", "Bien", JOptionPane.INFORMATION_MESSAGE);
+           }else{
+                //JOptionPane.showMessageDialog(null, "No es un Cuadrado", "Error", JOptionPane.ERROR_MESSAGE);
+                 validacion=false;
+            }
+        }
+        if (categoria.equals("Rectangulo")){
+           boolean verdad= rectangulo.verificarRectangulo(lado1, lado2, lado3, lado4);
+           if(verdad==true){
+               //JOptionPane.showMessageDialog(null, "Es un rectangulo", "Error", JOptionPane.INFORMATION_MESSAGE);
+               validacion=true;
+           }else{
+                 //JOptionPane.showMessageDialog(null, "No es un Cuadrado", "Error", JOptionPane.ERROR_MESSAGE);
+                validacion=false;
+            }
+        }
+            
 
         System.out.println(lado1);
         System.out.println(lado2);
         System.out.println(lado3);
         System.out.println(lado4);
-
-        aplicarHerencia(lado1, lado2, lado3);
+        
+            aplicarHerencia(lado1, lado2, lado3);
+        
         }
 
     }
@@ -105,17 +144,14 @@ public class Graficar extends javax.swing.JFrame {
         String categoria = (String) jcomFiguras.getSelectedItem();
        
         if(categoria.equals("Cuadrado")){
-            cuadrado = new Cuadrado();
             cuadrado.hallarArea((short)lado1,(short) lado2);
             cuadrado.hallarPerimetro((short)lado1,(short) lado2);
         }
          if(categoria.equals("Rectangulo")){
-            rectangulo = new Rectangulo();
             rectangulo.hallarArea((short)lado1,(short) lado2);
             rectangulo.hallarPerimetro((short)lado1,(short) lado2);
         }
         if(categoria.equals("Triangulo")){
-            triangulo = new Triangulo();
             triangulo.hallarArea((short)lado1,(short) lado2,(short) lado3);
             triangulo.hallarPerimetro((short)lado1,(short) lado2,(short) lado3);
         }
@@ -124,18 +160,19 @@ public class Graficar extends javax.swing.JFrame {
     private int[] obtenerValores() {
         int x1 = 0, x2 = 0, x3 = 0, x4 = 0, y1 = 0, y2 = 0, y3 = 0, y4 = 0;
         int[] arrayEnteros = new int[8];
-        x1 = (int) Double.parseDouble(textX1.getText());
-        x2 = (int) Double.parseDouble(textX2.getText());
-        y1 = (int) Double.parseDouble(textY1.getText());
-        y2 = (int) Double.parseDouble(textY2.getText());
-
-        x3 = (int) Double.parseDouble(textX3.getText());
-        x4 = (int) Double.parseDouble(textX4.getText());
-        y3 = (int) Double.parseDouble(textY3.getText());
-        y4 = (int) Double.parseDouble(textY4.getText());
+       
 
         String categoria = (String) jcomFiguras.getSelectedItem();
         if(categoria.equals("Triangulo")){
+            x1 = (int) Double.parseDouble(textX1.getText());
+            x2 = (int) Double.parseDouble(textX2.getText());
+            y1 = (int) Double.parseDouble(textY1.getText());
+            y2 = (int) Double.parseDouble(textY2.getText());
+
+            x3 = (int) Double.parseDouble(textX3.getText());
+            //x4 = (int) Double.parseDouble(textX4.getText());
+            y3 = (int) Double.parseDouble(textY3.getText());
+            //y4 = (int) Double.parseDouble(textY4.getText());
             arrayEnteros[0] = x1;
             arrayEnteros[1] = y1;
             arrayEnteros[2] = x2;
@@ -145,6 +182,15 @@ public class Graficar extends javax.swing.JFrame {
             
            
         } else {
+             x1 = (int) Double.parseDouble(textX1.getText());
+            x2 = (int) Double.parseDouble(textX2.getText());
+            y1 = (int) Double.parseDouble(textY1.getText());
+            y2 = (int) Double.parseDouble(textY2.getText());
+
+            x3 = (int) Double.parseDouble(textX3.getText());
+            x4 = (int) Double.parseDouble(textX4.getText());
+            y3 = (int) Double.parseDouble(textY3.getText());
+            y4 = (int) Double.parseDouble(textY4.getText());
             arrayEnteros[0] = x1;
             arrayEnteros[1] = y1;
             arrayEnteros[2] = x2;

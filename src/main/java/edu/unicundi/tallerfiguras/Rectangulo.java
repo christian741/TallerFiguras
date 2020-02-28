@@ -35,4 +35,32 @@ public class Rectangulo extends CuadradoRectangulo{
         short area = (short) (lado1 * lado2);
         setArea(area);
     }
+    
+     public boolean verificarRectangulo(int lado1,int lado2,int lado3 ,int lado4){
+         
+         boolean validacion = false;
+         byte acumulador = 0;
+         if (lado1 == lado2);
+         acumulador++;
+         if (lado1 == lado3) {
+             acumulador++;
+         }
+         if (lado1 == lado4) {
+             acumulador++;
+         }
+         if (lado2 == lado3) {
+             acumulador++;
+         }
+         if (lado2 == lado4) {
+             acumulador++;
+         }
+         if(lado3==lado4){
+             acumulador++;
+         }
+         if(acumulador==2){
+             validacion=true;
+         }
+
+        return validacion;
+    }
 }

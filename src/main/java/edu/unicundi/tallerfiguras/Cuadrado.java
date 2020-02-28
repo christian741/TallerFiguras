@@ -34,18 +34,10 @@ public class Cuadrado extends CuadradoRectangulo{
         System.out.println("El area del cuadrado es:"+getArea());
     }
     
-     public boolean verificarCuadrado(int [] coordenadas){
-        boolean validacion = false;
-        for(int i=0;i<coordenadas.length;i++){
-            if(i%2==0){
-                if(coordenadas[i]==coordenadas[i+1]){
-                    
-                }
-            }else{
-                if(coordenadas[i]==coordenadas[i+1]){
-                    
-                }
-            }
+     public boolean verificarCuadrado(int lado1,int lado2,int lado3 ,int lado4){
+        boolean validacion=false;
+        if(lado1==lado2 && lado1==lado3 && lado1 == lado4 && lado2==lado3 && lado2==lado4 && lado3== lado4){
+            validacion=true;
         }
         return validacion;
     }
