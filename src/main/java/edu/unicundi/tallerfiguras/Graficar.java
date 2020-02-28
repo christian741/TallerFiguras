@@ -20,6 +20,147 @@ public class Graficar extends javax.swing.JFrame {
     private Cuadrado cuadrado;
     private Rectangulo rectangulo;
     private Triangulo triangulo;
+    
+       
+    public class Dibujo2D extends JPanel {
+
+        public Dibujo2D() {
+
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            int[] valores = new int[8];
+            valores = obtenerValores();
+            obtenerLados(valores);
+            //g.drawLine(y1, x1, x2, y2);
+            String categoria = (String) jcomFiguras.getSelectedItem();
+            if (categoria.equals("Triangulo")) {
+                g.drawLine(valores[0], valores[1], valores[2], valores[3]);
+                g.drawLine(valores[2], valores[3], valores[4], valores[5]);
+                g.drawLine(valores[4], valores[5], valores[0], valores[1]);
+            } else {
+                g.drawLine(valores[0], valores[1], valores[2], valores[3]);
+                g.drawLine(valores[2], valores[3], valores[4], valores[5]);
+                g.drawLine(valores[4], valores[5], valores[6], valores[7]);
+                g.drawLine(valores[6], valores[7], valores[0], valores[1]);
+
+            }
+
+        }
+    }
+
+    private void obtenerLados(int[] arrayEnteros) {
+        String categoria = (String) jcomFiguras.getSelectedItem();
+        int lado1, lado2, lado3, lado4;
+        if (categoria.equals("Triangulo")) {
+             //lado1 = (x1 - y1) + (y2 - x2)
+            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]);
+            if (lado1 < 0) {
+                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]) * -1;
+            }
+            // lado2 = (x2 - y2) + (y3 - x3
+            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            if (lado2 < 0) {
+                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            }
+            // lado3 = (x3 - y3) + (y4 - x4
+            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            if (lado3 < 0) {
+                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            }
+        } else {
+            //lado1 = (x1 - y1) + (y2 - x2)
+            lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]);
+            if (lado1 < 0) {
+                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[2] - arrayEnteros[3]) * -1;
+            }
+            // lado2 = (x2 - y2) + (y3 - x3
+            lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            if (lado2 < 0) {
+                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[4] - arrayEnteros[5]);
+            }
+            // lado3 = (x3 - y3) + (y4 - x4
+            lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            if (lado3 < 0) {
+                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[6] - arrayEnteros[7]);
+            }
+            // lado3 = (x3 - y3) + (y4 - x4
+            lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[0] - arrayEnteros[1]);
+            if (lado4 < 0) {
+                lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[0] - arrayEnteros[1]);
+            }
+        
+
+        System.out.println(lado1);
+        System.out.println(lado2);
+        System.out.println(lado3);
+        System.out.println(lado4);
+
+        aplicarHerencia(lado1, lado2, lado3);
+        }
+
+    }
+    private void aplicarHerencia(int lado1,int lado2,int lado3){
+        String categoria = (String) jcomFiguras.getSelectedItem();
+       
+        if(categoria.equals("Cuadrado")){
+            cuadrado = new Cuadrado();
+            cuadrado.hallarArea((short)lado1,(short) lado2);
+            cuadrado.hallarPerimetro((short)lado1,(short) lado2);
+        }
+         if(categoria.equals("Rectangulo")){
+            rectangulo = new Rectangulo();
+            rectangulo.hallarArea((short)lado1,(short) lado2);
+            rectangulo.hallarPerimetro((short)lado1,(short) lado2);
+        }
+        if(categoria.equals("Triangulo")){
+            triangulo = new Triangulo();
+            triangulo.hallarArea((short)lado1,(short) lado2,(short) lado3);
+            triangulo.hallarPerimetro((short)lado1,(short) lado2,(short) lado3);
+        }
+    }
+   
+    private int[] obtenerValores() {
+        int x1 = 0, x2 = 0, x3 = 0, x4 = 0, y1 = 0, y2 = 0, y3 = 0, y4 = 0;
+        int[] arrayEnteros = new int[8];
+        x1 = (int) Double.parseDouble(textX1.getText());
+        x2 = (int) Double.parseDouble(textX2.getText());
+        y1 = (int) Double.parseDouble(textY1.getText());
+        y2 = (int) Double.parseDouble(textY2.getText());
+
+        x3 = (int) Double.parseDouble(textX3.getText());
+        x4 = (int) Double.parseDouble(textX4.getText());
+        y3 = (int) Double.parseDouble(textY3.getText());
+        y4 = (int) Double.parseDouble(textY4.getText());
+
+        String categoria = (String) jcomFiguras.getSelectedItem();
+        if(categoria.equals("Triangulo")){
+            arrayEnteros[0] = x1;
+            arrayEnteros[1] = y1;
+            arrayEnteros[2] = x2;
+            arrayEnteros[3] = y2;
+            arrayEnteros[4] = x3;
+            arrayEnteros[5] = y3;
+            
+           
+        } else {
+            arrayEnteros[0] = x1;
+            arrayEnteros[1] = y1;
+            arrayEnteros[2] = x2;
+            arrayEnteros[3] = y2;
+            arrayEnteros[4] = x3;
+            arrayEnteros[5] = y3;
+            arrayEnteros[6] = x4;
+            arrayEnteros[7] = y4;
+        }
+       
+
+        return arrayEnteros;
+
+    }
+    
+    
    
     /**
      * Creates new form Graficar
@@ -238,18 +379,18 @@ public class Graficar extends javax.swing.JFrame {
                     .addComponent(textY4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(butGraficar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panPlanoLayout = new javax.swing.GroupLayout(panPlano);
         panPlano.setLayout(panPlanoLayout);
         panPlanoLayout.setHorizontalGroup(
             panPlanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
+            .addGap(0, 921, Short.MAX_VALUE)
         );
         panPlanoLayout.setVerticalGroup(
             panPlanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         labelTitulo.setText("Figuras Con Herencia");
@@ -261,7 +402,7 @@ public class Graficar extends javax.swing.JFrame {
             .addGroup(panTituloLayout.createSequentialGroup()
                 .addGap(205, 205, 205)
                 .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(208, Short.MAX_VALUE))
         );
         panTituloLayout.setVerticalGroup(
             panTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +417,13 @@ public class Graficar extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(panFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,10 +431,8 @@ public class Graficar extends javax.swing.JFrame {
                 .addComponent(panTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addComponent(panFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(panFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panPlano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -325,13 +464,19 @@ public class Graficar extends javax.swing.JFrame {
     }//GEN-LAST:event_jcomFigurasActionPerformed
 
     private void butGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butGraficarActionPerformed
-       // panPlano.repaint();
-        
-        pintarCuadrado(this.panPlano.getGraphics());
+       dibujar();
         
     }//GEN-LAST:event_butGraficarActionPerformed
 
-    public void  pintarCuadrado(Graphics g){
+    private void dibujar() {
+        Dibujo2D dibuj = new Dibujo2D();
+        dibuj.setBounds(50, 100, 1000, 1000);
+        dibuj.setOpaque(false);
+        panPlano.setBackground(Color.white);
+        panPlano.add(dibuj);
+        panPlano.repaint();
+    }
+    /*public void  pintarCuadrado(Graphics g){
       //panPlano.setBackground(Color.white);
       g.drawLine(Integer.parseInt(textX1.getText().toString()),Integer.parseInt(textY1.getText().toString()),Integer.parseInt(textX2.getText().toString()),Integer.parseInt(textY2.getText().toString()));
       g.drawLine(Integer.parseInt(textX2.getText().toString()),Integer.parseInt(textY2.getText().toString()),Integer.parseInt(textX3.getText().toString()),Integer.parseInt(textY3.getText().toString()));
@@ -341,7 +486,7 @@ public class Graficar extends javax.swing.JFrame {
       g.dispose();
       super.paintComponents(g);
      
-    }
+    }*/
     
     /**
      * @param args the command line arguments
@@ -384,6 +529,7 @@ public class Graficar extends javax.swing.JFrame {
         String categoria = (String) jcomFiguras.getSelectedItem();
         if(categoria.equals("Seleccione una figura")){
            JOptionPane.showMessageDialog(null, "Lo sentimos escoja una figura", "Error", JOptionPane.WARNING_MESSAGE);
+           ocultarCajas();
         }
         if(categoria.equals("Cuadrado")){
             ocultarCajas();

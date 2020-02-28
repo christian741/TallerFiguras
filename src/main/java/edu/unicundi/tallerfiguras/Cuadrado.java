@@ -19,6 +19,7 @@ public class Cuadrado extends CuadradoRectangulo{
     public void hallarPerimetro(short lado1,short lado2){
         short perimetro = (short) (lado1*2 + lado2*2);
         setPerimetro(perimetro);
+        System.out.println("El perimetro del cuadrado es:"+getPerimetro());
     }
     
     /**
@@ -30,6 +31,23 @@ public class Cuadrado extends CuadradoRectangulo{
     public void hallarArea(short lado1,short lado2){
         short area= (short) (lado1*lado2);
         setArea(area);
+        System.out.println("El area del cuadrado es:"+getArea());
+    }
+    
+     public boolean verificarCuadrado(int [] coordenadas){
+        boolean validacion = false;
+        for(int i=0;i<coordenadas.length;i++){
+            if(i%2==0){
+                if(coordenadas[i]==coordenadas[i+1]){
+                    
+                }
+            }else{
+                if(coordenadas[i]==coordenadas[i+1]){
+                    
+                }
+            }
+        }
+        return validacion;
     }
     
 }
