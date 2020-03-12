@@ -61,52 +61,58 @@ public class Graficar extends javax.swing.JFrame {
              //lado1 = (x1 - y1) + (y2 - x2)
             lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]);
             if (lado1 < 0) {
-                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]) * -1;
+                lado1 = lado1*-1;
             }
             // lado2 = (x2 - y2) + (y3 - x3
             lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4]);
             if (lado2 < 0) {
-                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4])*-1;
+                lado2 =lado2*-1;
             }
             // lado3 = (x3 - y3) + (y4 - x4
             lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6]);
             if (lado3 < 0) {
-                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6])*-1;
+                lado3 = lado3*-1;
             }
             byte tipo = triangulo.verificarTriangulo((short)lado1,(short)lado2,(short)lado3);
             if(tipo==1){
-               //JOptionPane.showMessageDialog(null, "Es un Triangulo Equilatero", "Error", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Es un Triangulo Equilatero", "Error", JOptionPane.INFORMATION_MESSAGE);
                validacion=true;
            }
             if(tipo==2){
-               //JOptionPane.showMessageDialog(null, "Es un Triangulo Isoceles", "Error", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Es un Triangulo Isoceles", "Error", JOptionPane.INFORMATION_MESSAGE);
                validacion=true;
            }
             if(tipo==3){
-               //JOptionPane.showMessageDialog(null, "Es un Triangulo Escaleno", "Error", JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog(null, "Es un Triangulo Escaleno", "Error", JOptionPane.INFORMATION_MESSAGE);
                validacion=true;
            }
            // validacion=true;
         } else {
             //lado1 = (x1 - y1) + (y2 - x2)
             lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]);
-            if (lado1 < 0) {
-                lado1 = (arrayEnteros[0] - arrayEnteros[1]) + (arrayEnteros[3] - arrayEnteros[2]) * -1;
+            if (lado1 < 1) {
+                lado1 = lado1*-1;
+                System.out.println("entrelado1");
             }
             // lado2 = (x2 - y2) + (y3 - x3
             lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4]);
-            if (lado2 < 0) {
-                lado2 = (arrayEnteros[2] - arrayEnteros[3]) + (arrayEnteros[5] - arrayEnteros[4])*-1;
+            System.out.println("No entro lado2"+lado2);
+            if (lado2 < 1) {
+                lado2 = lado2*-1;
+                System.out.println("entrelado2"+lado2);
             }
             // lado3 = (x3 - y3) + (y4 - x4
             lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6]);
-            if (lado3 < 0) {
-                lado3 = (arrayEnteros[4] - arrayEnteros[5]) + (arrayEnteros[7] - arrayEnteros[6])*-1;
+            System.out.println("No entro lado3"+lado3);
+            if (lado3 < 1) {
+                lado3 =lado3*-1;
+                System.out.println("entrelado3"+lado3);
             }
             // lado3 = (x3 - y3) + (y4 - x4
             lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[1] - arrayEnteros[0]);
-            if (lado4 < 0) {
-                lado4 = (arrayEnteros[6] - arrayEnteros[7]) + (arrayEnteros[1] - arrayEnteros[0])*-1;
+            if (lado4 < 1) {
+                lado4 = lado4*-1;
+                System.out.println("entrelado4");
             }
             
         if (categoria.equals("Cuadrado")){

@@ -22,6 +22,7 @@ public class Rectangulo extends CuadradoRectangulo{
     public void hallarPerimetro(short lado1, short lado2) {
         short perimetro = (short) (lado1 * 2 + lado2 * 2);
         setPerimetro(perimetro);
+         System.out.println("El perimetro del rectangulo es:"+getPerimetro());
     }
 
     /**
@@ -34,6 +35,7 @@ public class Rectangulo extends CuadradoRectangulo{
     public void hallarArea(short lado1, short lado2) {
         short area = (short) (lado1 * lado2);
         setArea(area);
+         System.out.println("El area del rectangulo es:"+getArea());
     }
     
      public boolean verificarRectangulo(int lado1,int lado2,int lado3 ,int lado4){

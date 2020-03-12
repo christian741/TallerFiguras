@@ -17,6 +17,7 @@ public class Triangulo extends Figura{
     public short hallarArea(short lado1,short lado2,short lado3){
         short area= (short) (lado1*lado2/2);
         setPerimetro(area);
+         System.out.println("El area del triangulo es:"+getArea());
         return area;   
     }
     
@@ -40,6 +41,8 @@ public class Triangulo extends Figura{
     public short  hallarPerimetro(short lado1 , short lado2 , short lado3){
         short perimetro= (short) (lado1+lado2+lado3);
         setPerimetro(perimetro);
+           System.out.println("El perimetro del triangulo es:"+getPerimetro());
+    
         return perimetro;    
     }
   
